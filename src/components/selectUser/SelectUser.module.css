@@ -1,15 +1,11 @@
-.selectUserBox {
-  border-radius: 8px;
-  border: solid 1px var(--secondary);
-  margin-bottom: 20px;
-}
+.selectUserBox {}
 
 .headerBox {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-radius: 6px 6px 0 0;
-  background-color: var(--secondary);
+  background-color: var(--darkBackground);
+  color: var(--lightText);
   padding: 10px 20px;
   min-height: 40px;
 }
@@ -25,11 +21,11 @@
 
 .userBox {
   padding: 0 20px;
-  border-top: solid 1px var(--secondary);
+  border-top: solid 1px var(--text);
 }
 
 .userBox:hover {
-  background-color: #2f2f2f05;
+  background-color: var(--secondary);
 }
 
 .searchbar {
@@ -39,9 +35,8 @@
 
   height: 40px;
   padding-left: 5px;
-  width: 20%;
-  font-size: 18px;
-  border-radius: 8px;
+  width: 30%;
+  font-size: 22x;
 }
 
 .searchbar:focus {

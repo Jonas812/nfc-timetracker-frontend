@@ -2,6 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import TimelogTable from './components/timelogTable/TimelogTable'
 import SelectUser from './components/selectUser/SelectUser'
+import HeaderBar from './components/headerBar/HeaderBar'
 
 
 function App() {
@@ -9,8 +10,11 @@ function App() {
 
   return (
     <>
-      <SelectUser></SelectUser>
-      <TimelogTable></TimelogTable>
+      <HeaderBar></HeaderBar>
+      <div className='content'>
+        <SelectUser></SelectUser>
+        <TimelogTable></TimelogTable>
+      </div >
     </>
   )
 }

@@ -1,0 +1,54 @@
+.filterContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.filterSectionName {
+  width: 100px;
+}
+
+
+.dropbtn {
+  background-color: #000000;
+  color: white;
+  font-size: 16px;
+  width: 150px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  flex-direction: column;
+  background-color: var(--darkBackground);
+  width: 150px;
+  z-index: 1;
+  cursor: pointer;
+}
+
+
+.dropdownContent p {
+  background-color: var(--darkBackground);
+  color: var(--lightText);
+  height: 30px;
+  margin: 0;
+  line-height: 1.7;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+}
+
+
+.dropdown:hover .dropdownContent {
+  display: flex;
+}

@@ -5,11 +5,13 @@
   color: var(--text);
   background-color: var(--background);
 
-  --text: #0e0b07;
+  --text: #000000;
   --background: #ffffff;
-  --primary: #848de0;
-  --secondary: #cccfeb;
-  --accent: #5b68e3;
+  --primary: #ffc526;
+  --secondary: #bbbbbb;
+  --accent: #ff0000;
+  --lightText: var(--background);
+  --darkBackground: var(--text);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -19,6 +21,6 @@
 
 html,
 body {
-  margin: 10px;
+  margin: 0;
   padding: 0;
 }

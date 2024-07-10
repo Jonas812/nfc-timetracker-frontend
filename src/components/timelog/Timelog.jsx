@@ -2,26 +2,25 @@ import React from 'react';
 import styles from './Timelog.module.css'
 
 // Functional component
-const Timelog = (props) => {
+function Timelog({ date, totalHours, details }) {
+
   return (
     <div className={styles.timelogBox}>
       <div className={styles.timelogHeader}>
-        <p>Date: 29.06.2024</p>
-        <p>Worktime: 6h</p>
+        <p className={styles.regularBoldText}>Date: {date}</p>
+        <p className={styles.regularBoldText}>Worktime: {totalHours}h</p>
       </div>
       <div className={styles.timelogDetails}>
-        <div className={styles.detailRow}>
-          <p>11:00</p>
-          <p>login</p>
-        </div>
-        <div className={styles.detailRow}>
-          <p>11:00</p>
-          <p>login</p>
-        </div>
-        <div className={styles.detailRow}>
-          <p>11:00</p>
-          <p>login</p>
-        </div>
+        {details.map((detail, index) => (
+          <div>
+
+            <div className={styles.detailRow}>
+              <p className={styles.regularText}>{detail.start} - {detail.end}</p>
+              <p className={styles.regularText}>{detail.hours}h</p>
+            </div>
+
+          </div>
+        ))}
       </div>
     </div>
   );

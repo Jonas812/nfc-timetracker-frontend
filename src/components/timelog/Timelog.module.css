@@ -1,4 +1,5 @@
 .timelogBox {
+  width: 100%;
   display: flex;
   flex-direction: column;
 }
@@ -7,20 +8,28 @@
   display: flex;
   justify-content: space-between;
   background-color: var(--background);
-  border-top: solid 1px var(--secondary);
+  border-top: solid 1px var(--text);
   padding: 0 20px;
 }
 
 .timelogHeader:hover {
-  background-color: #2f2f2f05;
+  background-color: var(--secondary);
+}
+
+.regularBoldText {
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .timelogDetails {
   display: flex;
   flex-direction: column;
-  background-color: var(--background);
   padding: 0 20px;
-  border-top: solid 1px var(--secondary);
+  border-top: solid 1px var(--text);
+}
+
+.regularText {
+  font-size: 16px;
 }
 
 .detailRow {

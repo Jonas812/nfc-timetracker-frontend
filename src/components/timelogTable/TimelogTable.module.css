@@ -1,0 +1,59 @@
+.filterBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.filterBox {
+  padding: 0 20px;
+}
+
+.filterSection {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+}
+
+.filterSectionName {
+  width: 100px;
+}
+
+.filterBtn {
+  width: 120px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: var(--primary);
+  color: var(--text);
+  border: none;
+}
+
+.filterBtn:hover {
+  background-color: var(--secondary);
+}
+
+.filterBtn:active {
+  transform: translateY(0.5px);
+}
+
+.timelogTable {
+  border-radius: 8px;
+  border: solid 1px var(--secondary);
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 20px;
+}
+
+.header {
+  border-radius: 6px 6px 0 0;
+  display: flex;
+  align-items: center;
+  background-color: var(--secondary);
+  padding: 10px 20px;
+  min-height: 40px;
+  margin: 0;
+}
+
+.columns {
+  height: 600px;
+  overflow-y: auto;
+}

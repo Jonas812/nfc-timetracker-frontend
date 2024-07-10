@@ -1,0 +1,49 @@
+.selectUserBox {
+  border-radius: 8px;
+  border: solid 1px var(--secondary);
+  margin-bottom: 20px;
+}
+
+.headerBox {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 6px 6px 0 0;
+  background-color: var(--secondary);
+  padding: 10px 20px;
+  min-height: 40px;
+}
+
+.header {
+  margin: 0;
+}
+
+.users {
+  display: flex;
+  flex-direction: column;
+}
+
+.userBox {
+  padding: 0 20px;
+  border-top: solid 1px var(--secondary);
+}
+
+.userBox:hover {
+  background-color: #2f2f2f05;
+}
+
+.searchbar {
+  border: none;
+  outline: none;
+  background-color: var(--background);
+
+  height: 40px;
+  padding-left: 5px;
+  width: 20%;
+  font-size: 18px;
+  border-radius: 8px;
+}
+
+.searchbar:focus {
+  border: none;
+}

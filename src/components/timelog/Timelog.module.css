@@ -1,0 +1,29 @@
+.timelogBox {
+  display: flex;
+  flex-direction: column;
+}
+
+.timelogHeader {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--background);
+  border-top: solid 1px var(--secondary);
+  padding: 0 20px;
+}
+
+.timelogHeader:hover {
+  background-color: #2f2f2f05;
+}
+
+.timelogDetails {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background);
+  padding: 0 20px;
+  border-top: solid 1px var(--secondary);
+}
+
+.detailRow {
+  display: flex;
+  justify-content: space-between;
+}

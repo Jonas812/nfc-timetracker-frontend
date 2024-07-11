@@ -12,9 +12,15 @@
   padding: 0 20px;
 }
 
-.timelogHeader:hover {
-  background-color: var(--secondary);
+.timelogBox:hover .timelogHeader {
+  background-color: #e8481d50;
 }
+
+.timelogBox:hover .timelogDetails {
+  background-color: #e8481d50;
+}
+
+
 
 .regularBoldText {
   font-size: 16px;

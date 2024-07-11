@@ -1,22 +1,21 @@
-import { useState } from 'react'
-import './App.css'
-import TimelogTable from './components/timelogTable/TimelogTable'
-import SelectUser from './components/selectUser/SelectUser'
-import HeaderBar from './components/headerBar/HeaderBar'
-
+import { useState } from 'react';
+import './App.css';
+import TimelogTable from './components/timelogTable/TimelogTable';
+import SelectUser from './components/selectUser/SelectUser';
+import HeaderBar from './components/headerBar/HeaderBar';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [useridToFilter, setUseridToFilter] = useState(1); // Initial user ID to filter
 
   return (
     <>
-      <HeaderBar></HeaderBar>
+      <HeaderBar />
       <div className='content'>
-        <SelectUser></SelectUser>
-        <TimelogTable></TimelogTable>
-      </div >
+        <SelectUser setUseridToFilter={setUseridToFilter} />
+        <TimelogTable useridToFilter={useridToFilter} />
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

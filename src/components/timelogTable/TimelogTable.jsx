@@ -3,12 +3,12 @@ import styles from './TimelogTable.module.css';
 import SelectYearMonth from '../selectYearMonth/SelectYearMonth';
 import Timelog from '../timelog/Timelog';
 
-function TimelogTable() {
+function TimelogTable({ useridToFilter }) {
   const timelogs = [
-    { startTimestamp: 1672534800, endTimestamp: 1672552800 }, // 01:01:2023 01:00 - 05:00
-    { startTimestamp: 1672556400, endTimestamp: 1672567200 }, // 01:01:2023 06:00 - 09:00
-    { startTimestamp: 1672621200, endTimestamp: 1672639200 }, // 02:01:2023 01:00 - 05:00
-    { startTimestamp: 1672642800, endTimestamp: 1672653600 }, // 02:01:2023 06:00 - 09:00
+    { starttimestamp: 1672534800, endtimestamp: 1672552800, userid: 1 }, // 01:01:2023 01:00 - 05:00
+    { starttimestamp: 1672556400, endtimestamp: 1672567200, userid: 1 }, // 01:01:2023 06:00 - 09:00
+    { starttimestamp: 1672621200, endtimestamp: 1672639200, userid: 2 }, // 02:01:2023 01:00 - 05:00
+    { starttimestamp: 1672642800, endtimestamp: 1672653600, userid: 2 }, // 02:01:2023 06:00 - 09:00
   ];
 
   const formatTimestamp = (timestamp) => {
@@ -25,14 +25,14 @@ function TimelogTable() {
     const workLogByDate = {};
 
     timelogs.forEach(log => {
-      const start = formatTimestamp(log.startTimestamp);
-      const end = formatTimestamp(log.endTimestamp);
+      const start = formatTimestamp(log.starttimestamp);
+      const end = formatTimestamp(log.endtimestamp);
 
       if (!workLogByDate[start.date]) {
         workLogByDate[start.date] = { totalHours: 0, details: [] };
       }
 
-      const workHours = (log.endTimestamp - log.startTimestamp) / 3600;
+      const workHours = (log.endtimestamp - log.starttimestamp) / 3600;
       workLogByDate[start.date].totalHours += workHours;
       workLogByDate[start.date].details.push({
         start: start.time,
@@ -44,7 +44,8 @@ function TimelogTable() {
     return workLogByDate;
   };
 
-  const workLogByDate = calculateWorkHours(timelogs);
+  const filteredTimelogs = timelogs.filter(log => log.userid === useridToFilter);
+  const workLogByDate = calculateWorkHours(filteredTimelogs);
 
   return (
     <div className={styles.timelogTable}>

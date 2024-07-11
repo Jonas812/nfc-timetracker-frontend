@@ -1,21 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SelectUser.module.css';
 
-const SelectUser = () => {
-    const [users, setUsers] = useState(['Marc', 'Luca', 'Jonas']);
+const users = [
+    { name: "Marc", userid: 1 },
+    { name: "Jonas", userid: 2 },
+    { name: "Luka", userid: 3 }
+];
+
+const SelectUser = ({ setUseridToFilter }) => {
     const [searchTerm, setSearchTerm] = useState('');
     const [filteredUsers, setFilteredUsers] = useState(users);
 
     useEffect(() => {
         setFilteredUsers(
             users.filter(user =>
-                user.toLowerCase().includes(searchTerm.toLowerCase())
+                user.name.toLowerCase().includes(searchTerm.toLowerCase())
             )
         );
-    }, [searchTerm, users]);
+    }, [searchTerm]);
 
     const handleSearchChange = (event) => {
         setSearchTerm(event.target.value);
+    };
+
+    const handleUserClick = (userid) => {
+        setUseridToFilter(userid);
     };
 
     return (
@@ -23,7 +32,7 @@ const SelectUser = () => {
             <div className={styles.headerBox}>
                 <h3 className={styles.header}>Users</h3>
                 <input
-                    type="input"
+                    type="text"
                     className={styles.searchbar}
                     placeholder="Suche"
                     value={searchTerm}
@@ -32,9 +41,9 @@ const SelectUser = () => {
                 />
             </div>
             <div className={styles.users}>
-                {filteredUsers.map((user, index) => (
-                    <div key={index} className={styles.userBox}>
-                        <p>{user}</p>
+                {filteredUsers.map((user) => (
+                    <div key={user.userid} className={styles.userBox} onClick={() => handleUserClick(user.userid)}>
+                        <p>{user.name}</p>
                     </div>
                 ))}
             </div>

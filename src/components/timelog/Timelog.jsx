@@ -1,9 +1,8 @@
-import React from 'react';
-import styles from './Timelog.module.css'
+import React from "react";
+import styles from "./Timelog.module.css";
 
 // Functional component
 function Timelog({ date, totalHours, details }) {
-
   return (
     <div className={styles.timelogBox}>
       <div className={styles.timelogHeader}>
@@ -13,17 +12,17 @@ function Timelog({ date, totalHours, details }) {
       <div className={styles.timelogDetails}>
         {details.map((detail, index) => (
           <div>
-
             <div className={styles.detailRow}>
-              <p className={styles.regularText}>{detail.start} - {detail.end}</p>
+              <p className={styles.regularText}>
+                {detail.start} - {detail.end}
+              </p>
               <p className={styles.regularText}>{detail.hours}h</p>
             </div>
-
           </div>
         ))}
       </div>
     </div>
   );
-};
+}
 
 export default Timelog;

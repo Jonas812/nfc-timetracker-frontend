@@ -33,11 +33,11 @@
 }
 
 .userBox:hover {
-  background-color: #00ff0050;
+  background-color: #00aa0020;
 }
 
 .userBox.active:hover {
-  background-color: #ff000050;
+  background-color: #ff000020;
 }
 
 .deleteText {
@@ -47,8 +47,8 @@
 .userBox:hover .deleteText {
   display: flex;
   color: #f00;
+  font-weight: 500;
 }
-
 
 .selectText {
   display: none;
@@ -56,7 +56,8 @@
 
 .userBox:hover .selectText {
   display: flex;
-  color: #00da00;
+  color: #00e000;
+  font-weight: 500;
 }
 
 .searchbar {
@@ -81,7 +82,6 @@
   justify-content: end;
   gap: 10px;
   align-items: center;
-
 }
 
 .pageButton {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "./SelectUser.module.css";
+import styles from "./ShowUserInformation.module.css";
 import axios from "axios";
 
 const users = [
@@ -36,12 +36,23 @@ const users = [
   { name: "Benjamin", userid: 31 },
 ];
 
-function SelectUser({ setUseridToFilter }) {
+function ShowUserInformation({}) {
   const [searchTerm, setSearchTerm] = useState("");
   const [filteredUsers, setFilteredUsers] = useState(users);
   const [activeUserid, setActiveUserid] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const usersPerPage = 5;
+  const usersPerPage = 10;
+
+  useEffect(() => {
+    axios
+      .get(`/api/cardlist`)
+      .then((response) => {
+        setRemoteTimelogs(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error making the GET request:", error);
+      });
+  }, []);
 
   useEffect(() => {
     if (activeUserid === null) {
@@ -58,21 +69,6 @@ function SelectUser({ setUseridToFilter }) {
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
-  };
-
-  const handleUserClick = (userid) => {
-    if (activeUserid === userid) {
-      resetFilter();
-    } else {
-      setUseridToFilter(userid);
-      setActiveUserid(userid);
-    }
-  };
-
-  const resetFilter = () => {
-    setUseridToFilter(undefined);
-    setActiveUserid(null);
-    setSearchTerm("");
   };
 
   const handleNextPage = () => {
@@ -120,14 +116,10 @@ function SelectUser({ setUseridToFilter }) {
             className={`${styles.userBox} ${
               activeUserid === user.userid ? styles.active : ""
             }`}
-            onClick={() => handleUserClick(user.userid)}
           >
             <p>{user.name}</p>
-            {activeUserid === user.userid ? (
-              <p className={styles.deleteText}>Löschen</p>
-            ) : (
-              <p className={styles.selectText}>Auswählen</p>
-            )}
+            <p>{user.name}</p>
+            <p>{user.name}</p>
           </div>
         ))}
       </div>
@@ -160,4 +152,4 @@ function SelectUser({ setUseridToFilter }) {
   );
 }
 
-export default SelectUser;
+export default ShowUserInformation;

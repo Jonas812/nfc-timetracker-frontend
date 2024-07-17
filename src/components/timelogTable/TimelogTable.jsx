@@ -6,25 +6,25 @@ import Timelog from "../timelog/Timelog";
 
 function TimelogTable({ useridToFilter }) {
   const [remoteTimelogs, setRemoteTimelogs] = useState([]);
-  const [timelogsYear, setTimelogsYear] = useState([]);
-  const [timelogsMonth, setTimelogsMonth] = useState([]);
+  const [timelogsYear, setTimelogsYear] = useState(2024);
+  const [timelogsMonth, setTimelogsMonth] = useState(6);
 
   useEffect(() => {
     if (useridToFilter) {
-      const year = timelogsYear;  // Adjust as needed
-      const month = timelogsMonth;    // Adjust as needed
-      axios.get(`/api/timelog/byuser/${useridToFilter}/${year}/${month}`)
-        .then(response => {
+      axios
+        .get(
+          `/api/timelog/byuser/${useridToFilter}/${timelogsYear}/${timelogsMonth}`
+        )
+        .then((response) => {
           setRemoteTimelogs(response.data);
-          console.log(response.data);
         })
-        .catch(error => {
-          console.error('There was an error making the GET request:', error);
+        .catch((error) => {
+          console.error("There was an error making the GET request:", error);
         });
     } else {
-      setRemoteTimelogs([]); // Reset timelogs when no user is selected
+      setRemoteTimelogs([]); // Reset to empty array when no user is selected
     }
-  }, [useridToFilter]);
+  }, [useridToFilter, timelogsYear, timelogsMonth]);
 
   const formatTimestamp = (timestamp) => {
     const date = new Date(timestamp * 1000);
@@ -65,7 +65,12 @@ function TimelogTable({ useridToFilter }) {
     <div className={styles.timelogTable}>
       <div className={styles.header}>
         <h3 className={styles.headerText}>Timelogs</h3>
-        <SelectYearMonth setTimelogsYear={setTimelogsYear} setTimelogsMonth={setTimelogsMonth} />
+        <SelectYearMonth
+          setTimelogsYear={setTimelogsYear}
+          timelogsYear={timelogsYear}
+          setTimelogsMonth={setTimelogsMonth}
+          timelogsMonth={timelogsMonth}
+        />
       </div>
       {useridToFilter ? (
         <div className={styles.columns}>

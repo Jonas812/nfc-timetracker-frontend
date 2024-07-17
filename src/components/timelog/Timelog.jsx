@@ -7,7 +7,7 @@ function Timelog({ date, totalHours, details }) {
     <div className={styles.timelogBox}>
       <div className={styles.timelogHeader}>
         <p className={styles.regularBoldText}>Date: {date}</p>
-        <p className={styles.regularBoldText}>Worktime: {totalHours}h</p>
+        <p className={styles.regularBoldText}>Worktime: {totalHours.toFixed(2)}h</p>
       </div>
       <div className={styles.timelogDetails}>
         {details.map((detail, index) => (
@@ -16,7 +16,7 @@ function Timelog({ date, totalHours, details }) {
               <p className={styles.regularText}>
                 {detail.start} - {detail.end}
               </p>
-              <p className={styles.regularText}>{detail.hours}h</p>
+              <p className={styles.regularText}>{detail.hours.toFixed(2)}h</p>
             </div>
           </div>
         ))}

@@ -5,12 +5,14 @@ import SelectUser from "../../components/selectUser/SelectUser";
 import HeaderBar from "../../components/headerBar/HeaderBar";
 
 function Timelog() {
-  const [useridToFilter, setUseridToFilter] = useState(1); // Initial user ID to filter
+  const [useridToFilter, setUseridToFilter] = useState(undefined); // Initial user ID to filter
 
   return (
     <>
       <div className={styles.page}>
-        <HeaderBar />
+        <div className={styles.header}>
+          <HeaderBar />
+        </div>
         <div className={styles.content}>
           <SelectUser
             className={styles.user}

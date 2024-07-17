@@ -2,14 +2,9 @@
   display: flex;
   flex-direction: column;
   width: 70%;
+  height: 85vh;
 
   margin-right: 20px;
-}
-
-.timelogTable {
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 20px;
 }
 
 .header {
@@ -24,6 +19,6 @@
 }
 
 .columns {
-  max-height: 700px;
+  height: 100%;
   overflow-y: auto;
 }

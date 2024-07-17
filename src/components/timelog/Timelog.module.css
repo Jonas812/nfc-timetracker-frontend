@@ -7,7 +7,6 @@
 .timelogHeader {
   display: flex;
   justify-content: space-between;
-  background-color: var(--background);
   border-top: solid 1px var(--text);
   padding: 0 20px;
 }

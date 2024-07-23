@@ -10,6 +10,11 @@ export default defineConfig({
         target: 'https://timetrackerapi.grapecode.de',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
+      },
+      '/timeout-api': {  // Add this new proxy entry
+        target: 'https://timeout.madco-lab.de',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/timeout-api/, '')
       }
     }
   }

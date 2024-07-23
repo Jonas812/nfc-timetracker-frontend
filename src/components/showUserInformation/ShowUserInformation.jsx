@@ -2,70 +2,63 @@ import React, { useState, useEffect } from "react";
 import styles from "./ShowUserInformation.module.css";
 import axios from "axios";
 
-const users = [
-  { name: "Marc", userid: 1 },
-  { name: "Jonas", userid: 2 },
-  { name: "Luka", userid: 3 },
-  { name: "Paul", userid: 4 },
-  { name: "Anna", userid: 5 },
-  { name: "Mike", userid: 6 },
-  { name: "Sophie", userid: 7 },
-  { name: "Chris", userid: 8 },
-  { name: "Nina", userid: 9 },
-  { name: "Tom", userid: 10 },
-  { name: "Alice", userid: 11 },
-  { name: "Bob", userid: 12 },
-  { name: "Eva", userid: 13 },
-  { name: "Max", userid: 14 },
-  { name: "Laura", userid: 15 },
-  { name: "Sarah", userid: 16 },
-  { name: "David", userid: 17 },
-  { name: "Emma", userid: 18 },
-  { name: "John", userid: 19 },
-  { name: "Julia", userid: 20 },
-  { name: "Michael", userid: 21 },
-  { name: "Sophia", userid: 22 },
-  { name: "Daniel", userid: 23 },
-  { name: "Mia", userid: 24 },
-  { name: "William", userid: 25 },
-  { name: "Olivia", userid: 26 },
-  { name: "Alexander", userid: 27 },
-  { name: "Emily", userid: 28 },
-  { name: "James", userid: 29 },
-  { name: "Ava", userid: 30 },
-  { name: "Benjamin", userid: 31 },
-];
-
 function ShowUserInformation({}) {
   const [searchTerm, setSearchTerm] = useState("");
-  const [filteredUsers, setFilteredUsers] = useState(users);
+  const [filteredUsers, setFilteredUsers] = useState([]);
   const [activeUserid, setActiveUserid] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [users, setUsers] = useState([]);
   const usersPerPage = 10;
 
   useEffect(() => {
     axios
-      .get(`/api/cardlist`)
+      .get(`/api/cardusermapping`)
       .then((response) => {
-        setRemoteTimelogs(response.data);
+        const userData = response.data.map((user) => ({
+          cardid: user.cardid,
+          userid: user.userid,
+          username: getUserByUserId(response.data.cardid),
+        }));
+        setUsers(userData);
+        setFilteredUsers(userData);
+        console.log(getUserByUserId(response.data.cardid));
       })
       .catch((error) => {
         console.error("There was an error making the GET request:", error);
       });
   }, []);
 
+  const getUserByUserId = (userid) => {
+    const token =
+      "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImZiZDUzMWUwLTVhMzUtNGM3ZS1hZDA1LTIxOGIyMzU0YjBlMSJ9.eyJqdGkiOiI2NTA0ODlhMS1lYmQwLTQzZDktOWQ4Zi03ZWFkYzE4OGU3NzMiLCJzdWIiOiIwZjUyOWExZC02Y2UyLTQxZmQtOTk1Mi05NTljYjY4YzY0NGIiLCJleHAiOjE3MjE3Mjg4ODksIm5iZiI6MTcyMTcyNTI4NCwiaWF0IjoxNzIxNzI1Mjg5LCJtZXRhIjp7ImVtYWlsIjoiaHR3LXRlc3RAZXhhbXBsZS5jb20iLCJuYW1lIjp7ImZpcnN0IjoiSm9obiIsImxhc3QiOiJEb2UiLCJzYWx1dGF0aW9uIjoiTXIifSwia2V5IjoiOTIyMTU4ZmItN2Y3Ny00ZDg0LWIzMTktZWI5Njk4M2NmZGVmIiwicm9sZSI6IkNPTVBBTllfQURNSU4iLCJjb21wYW55Ijp7ImlkIjoiYjgxNDgyMGItMjk3OC00OWVkLWE5MmItNWY0ZTgzNzZlYTdiIiwibmFtZSI6Imh0dy10ZXN0IiwiZmVhdHVyZXMiOlsiQ0xPQ0tJTkciXX19fQ.I-907PeB6l4Ot-cCnnbU9xGs40iGeMWTcUBvssxZPD7G0EWHB99psLxJVbN1md58VyjX_1KsSiy-WKEH7birhrzO4zr8SGZcuP2GNlvewi9N4F-C2F_PIiJvTVauVg5X8zwqUdKXG-2E0w6eOR7HNb3WpUlSt8OmdGt0DFOjXvImRtN-6GN03PrfBWkCNqIyOmaSH328aaa4bfkFItGcxZG9AU_e7IcZV7M1s1MoTHiZlVmqQRzp0y6_hQFZxfMPRUUiE7xslxflHlNVF9uAqaSSB1gAKDGd9ZegwouFuLNy0mQIpGXjcboReWUjTRgBHruxmtGQWe3MZYwWkKZAkQ"; // Replace with your actual token
+
+    console.log(userid);
+    axios
+      .get(`/timeout-api/api/v1/user/${userid}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error making the GET request:", error);
+      });
+  };
+
   useEffect(() => {
     if (activeUserid === null) {
       setFilteredUsers(
         users.filter((user) =>
-          user.name.toLowerCase().includes(searchTerm.toLowerCase())
+          user.cardid.toLowerCase().includes(searchTerm.toLowerCase())
         )
       );
     } else {
       setFilteredUsers(users.filter((user) => user.userid === activeUserid));
     }
     setCurrentPage(1); // Reset to first page on search or filter change
-  }, [searchTerm, activeUserid]);
+  }, [searchTerm, activeUserid, users]);
 
   const handleSearchChange = (event) => {
     setSearchTerm(event.target.value);
@@ -117,9 +110,9 @@ function ShowUserInformation({}) {
               activeUserid === user.userid ? styles.active : ""
             }`}
           >
-            <p>{user.name}</p>
-            <p>{user.name}</p>
-            <p>{user.name}</p>
+            <p>Name: {user.username}</p>
+            <p>User ID: {user.userid}</p>
+            <p>Card ID: {user.cardid}</p>
           </div>
         ))}
       </div>

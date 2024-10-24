@@ -8,6 +8,7 @@ export default defineConfig({
     proxy: {
       '/api': {
         target: 'https://timetrackerapi.grapecode.de',
+        //target: 'grapecode.de:3000',
         changeOrigin: true,
         rewrite: (path) => path.replace(/^\/api/, '')
       },

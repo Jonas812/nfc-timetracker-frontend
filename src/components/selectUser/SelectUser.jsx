@@ -106,9 +106,8 @@ function SelectUser({ setUseridToFilter }) {
         {paginatedUsers.map((user) => (
           <div
             key={user.userid}
-            className={`${styles.userBox} ${
-              activeUserid === user.userid ? styles.active : ""
-            }`}
+            className={`${styles.userBox} ${activeUserid === user.userid ? styles.active : ""
+              }`}
             onClick={() => handleUserClick(user.userid)}
           >
             <p>{user.name}</p>
